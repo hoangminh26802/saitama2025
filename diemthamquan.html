@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <title>Điểm tham quan</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f5f5;
+        color: #333;
+        line-height: 1.5; /*Các dòng cách nhau*/
+      }
+      header {
+        background-color: #c62828;
+        color: #fff;
+        padding: 16px 0;
+        text-align: center;
+      }
+      header h1 {
+        margin-bottom: 8px;
+      }
+      nav a {
+        color: #fff;
+        margin: 0 10px;
+        text-decoration: none;
+        transition: all 0.3s ease; /* Hiệu ứng mượt khi đổi trạng thái */
+      }
+      nav a:hover {
+        /*di chuyển chuột vào có gạch chân ở dưới*/
+        text-decoration: underline;
+        color: blue; /* Chữ chuyển sang màu đỏ */
+      }
+      .container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 0 10px;
+      }
+      h1,
+      h2,
+      h3 {
+        margin-bottom: 12px;
+      }
+      p {
+        margin-bottom: 12px;
+      }
+      ul,
+      ol {
+        padding-left: 20px;
+        margin-bottom: 12px;
+      }
+      footer {
+        text-align: center;
+        padding: 16px 0;
+        background: #c62828;
+        margin-top: 20px;
+      }
+      .place-item {
+        margin: 8px 0; /* Khoảng cách trên và dưới mỗi item, trái/phải bằng 0 */
+        padding: 12px; /* Khoảng cách bên trong item, giữa viền và nội dung */
+        border-radius: 8px; /* Bo góc item, làm mềm mại */
+        cursor: pointer; /* Khi rê chuột, con trỏ sẽ thành tay → thấy item có thể click */
+        color: #f5f5f5; /* Màu chữ đỏ tươi (màu chủ đạo) */
+        font-weight: bold; /* Chữ in đậm */
+      }
+      .place-item:hover {
+        background: #fce4ec; /* nền hồng nhạt */
+        box-shadow: 0 2px 6px rgb(165, 3, 3); /* tạo bóng nổi */
+        transform: translateY(-2px); /* nâng nhẹ item lên khi hover */
+        transition: all 0.3s ease; /* hiệu ứng mượt */
+      }
+      /* màu từng điểm */
+      .place-item[data-id="omiya"] {
+        background: #ff5722;
+      }
+      .place-item[data-id="superarena"] {
+        background: #4caf50;
+      }
+      .place-item[data-id="railway"] {
+        background: #2196f3;
+      }
+      .place-item[data-id="kawagoe"] {
+        background: #ffc107;
+      }
+      .place-item[data-id="hikawa"] {
+        background: #9c27b0;
+      }
+
+      /* Container của xe bus / timeline */
+      #bus-container {
+        position: relative; /* để các trạm và bus nằm tuyệt đối bên trong container */
+        height: 60px; /* chiều cao container thấp, gọn */
+        margin: 20px 0; /* khoảng cách trên dưới */
+        background: #e0e0e0; /* màu nền nhạt cho timeline */
+        border-radius: 20px; /* bo tròn 2 đầu giống thanh timeline */
+      }
+
+      /* Trạm trên timeline */
+      .station {
+        position: absolute; /* đặt vị trí tuyệt đối theo container */
+        width: 24px; /* nhỏ gọn */
+        height: 24px; /* nhỏ gọn */
+        border-radius: 50%; /* tròn hoàn toàn */
+        background: #4caf50; /* màu xanh cho trạm */
+        top: 50%; /* đặt chính giữa chiều cao container */
+        transform: translate(-50%, -50%); /* căn giữa theo trục X và Y */
+        cursor: pointer; /* hiện con trỏ khi hover */
+        transition: all 0.3s ease; /* hiệu ứng mượt khi hover thay đổi */
+      }
+
+      /* Hiệu ứng khi rê chuột lên trạm */
+      .station:hover {
+        background: #ff5252; /* đổi màu khi hover */
+        transform: translate(-50%, -50%) scale(1.5); /* phóng to trạm */
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* tạo bóng nhẹ */
+      }
+
+      /* Xe bus */
+      #bus {
+        position: absolute; /* nằm tuyệt đối trong container */
+        font-size: 80px; /* nhỏ, gọn */
+        top: 50%; /* căn giữa theo chiều cao container */
+        transform: translateY(-50%); /* căn giữa theo trục Y */
+        left: 0; /* bắt đầu từ trái container */
+        transition: left 1s ease; /* di chuyển mượt khi thay đổi vị trí */
+        z-index: 10; /* bus nằm trên trạm */
+      }
+
+      /* Chi tiết địa điểm */
+      .detail {
+        background: #fff; /* nền trắng */
+        padding: 16px; /* khoảng cách bên trong */
+        border-radius: 8px; /* bo tròn */
+        margin-top: 20px; /* cách timeline một chút */
+        display: none; /* mặc định ẩn */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* tạo bóng nhẹ nổi lên */
+      }
+
+      /* Hình ảnh trong chi tiết */
+      .detail img {
+        width: 100%;
+        max-width: 500px; /* giới hạn chiều rộng tối đa */
+        display: block; /* để căn giữa */
+        margin: 10px auto; /* trên dưới 10px, tự căn giữa */
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Khám phá Saitama</h1>
+        <div class="container top">
+          <nav>
+            <a href="index.html"><i class="fas fa-home"></i> Giới thiệu</a>
+            <a href="diemthamquan.html"
+              ><i class="fas fa-map-marker-alt"></i> Điểm tham quan</a
+            >
+            <a href="amthuc.html"><i class="fas fa-utensils"></i> Ẩm thực</a>
+            <a href="lichtrinh.html"><i class="fas fa-clock"></i> Lịch trình</a>
+            <a href="meo.html"><i class="fas fa-lightbulb"></i> Mẹo</a>
+            <a href="dichuyen.html"><i class="fas fa-train"></i> Di chuyển</a>
+          </nav>
+        </div>
+      </header>
+      <div class="container"></div>
+      <ul class="places">
+        <li class="place-item" data-id="omiya">Omiya Bonsai Village</li>
+        <li class="place-item" data-id="superarena">Saitama Super Arena</li>
+        <li class="place-item" data-id="railway">Bảo tàng Đường sắt</li>
+        <li class="place-item" data-id="kawagoe">Kawagoe (Phố Edo)</li>
+        <li class="place-item" data-id="hikawa">Chùa Hikawa</li>
+      </ul>
+      <div id="bus-container">
+        <div
+          class="station"
+          style="left: 0%"
+          data-detail="Trạm 1: Omiya Bonsai Village"
+        ></div>
+        <div class="station" style="left: 25%"></div>
+        <div class="station" style="left: 50%"></div>
+        <div class="station" style="left: 75%"></div>
+        <div class="station" style="left: 100%"></div>
+        <div id="bus">🚌</div>
+      </div>
+      <div id="place-detail" class="detail"></div>
+    </main>
+    <script>
+      // Lấy tất cả các phần tử trạm trên trang
+      const placeItems = document.querySelectorAll(".place-item");
+
+      // Lấy biểu tượng xe bus
+      const bus = document.getElementById("bus");
+
+      // Lấy khung hiển thị chi tiết trạm
+      const detail = document.getElementById("place-detail");
+
+      // Dữ liệu chi tiết từng địa điểm
+      const placesData = {
+        omiya: {
+          // Mỗi key là dataset-id của .place-item
+          title: "Omiya Bonsai Village", // Tên địa điểm
+          img: "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqGx5cm8knTLo61O84kVTxOan841a30-aIJSoqkmlQNsP4-Qv0KVqX9M9vYFUiwJk7TYE8vzXfIuxUJL4oYthc8bKu1S3stjOUn4cWqXkk3JCXaE4-W9uPEB76D8ZD-3inzKZVocCvfQ7mIVyVReX7oW2kRxTihS2iJlsQhfqf4F12XOzCiVynvoy_ADiMycEGoAo7gfgly90xloa4SY_uuUD-tQ8hajT_xlo3nAkuYvh8/Alley_in_Kawagoe.jpg?errorImage=false", // Ảnh minh họa
+          desc: "Vườn bonsai nổi tiếng ở Saitama.", // Mô tả
+          hours: "9:00 - 17:00", // Giờ mở cửa
+          address: "1-43-2 Omiya, Saitama City", // Địa chỉ
+          map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.345678!2d139.660123!3d35.904123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f3456789abc%3A0xabcdef123456!2sKawagoe!5e0!3m2!1svi!2sjp!4v1690000000003!5m2!1svi!2sjp", // iframe bản đồ
+        },
+        // Các địa điểm khác tương tự
+        superarena: {
+          title: "Saitama Super Arena",
+          img: "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqGzQAwGw0i5iw38y81IuV4ZHxyyaUqUyKlhkMOR-YUYuEU-vQy9TVG7aNQm4gmAS18iRYOvtjxnSDj_ZH_hqlYI36f7EFC4vxanqLQav2Q59cTKJsA1h7fc8lW7g-zaiVdS_KwaYVpoYYtcu-Bc1GpO1f3LJdqcGk76lsLRZNy3zq3NLMkDsgftxLWPt_YxV03clsmL8DKj5oLJxPxTYtJpSiQpq3gdKA7mwDlfypwQccUFvUuizQ7xrbhgE6Q0y_DJ-p6WmSGHcCfBcqiYlXV13SbzEHRKxzLhy6bj8t-HFopLGkiNM7q4h7w_zTcDleyg0w40o0665knyGDFbNH2HpnxD22cM2BqqXseAnRg4ThjkplMEk7ayRlgqRuov9ucSfZtXUJTBq89-znGPzxYR4jVKbd9-9jaYnLkJ4wrWtgtOINUQFg17O6rmrnpKvilic-n7TsXnS8mgTZmbpGvtOej17zr_ggdAIjfwIdU3pIuGcTm1qwK_l36qSiRWCfXdOAFGe6TNHW1fI4ey7UrtqEKVZoLYP2VpjnIorw0Dk3Zj-Q4DVFt_AaaKJD1e5XbHMv8T1tW0tEPP_kKUbvLg6-ukjne4D6UE-oW09ziE_MdlJF3MKGLwl1TD3JEoLQTm3AZQ6TTjbs0feQvtQuW9nkVCTs0BmUOq0C-GpDZeCB1JWbjlkLE1mRljbnJ8YhVw-o5zmnml_OR-bm6_whgO6wxOO_3a34qT4WQ74oIvf2d4RtcoeLtb0FQfRQtdtW8QH3vE14UZAreGfPGVxlc8iMU4Yw6HMcaBKRbA2u8L017-aVPhwSbvzIz9l9V8nti1hMVS746IrvyzcSo04AJHAKvJCa0xx6137drvGNKPFEdeUHdaoaS2xDm6SUbjUuzIQZ2erAsata-5CsUN0qF2m7BxX9uCHkx759uaCt-rtNp0HVLbez6xGEIVIIbPxk9RrL0Z-05Ks3E3AWNCbO-0lSQoGQKFQjZf-zDKFcW_TUSyEQWjClO_Fhkw-l_oYRfrwjq65pfzCl1gdTxktqZVo011i9QH1v9ArdtgJKbaDnR7sFCAOUwafgyRUF1I50z98tub1DHh949x87Is5Jf47dVgIPrMlu1tSyDXmMSYrzVnru1NzWsCjfRYhJA7z1sQkIKfDwAgk40FZ3t59rJh0ZZv2LR8e-xHxHHICn5Ldc_kR3Z4SwM7ULMa1scsYK3UzOd3fQbXj9fXkfwUnLJKS5BFjCg7Z9slsY4g7SMRd-XVtHqTItSDsi2UoHMI8vyM9Uq5YIiWOMhVm2De7x8Mx1MG6oVXNdsE4yFMRpm4t4xMWcfiQ8VvXkbCAMv8LMxnE3j3HU8BScikHH4ne-MFK95JzEW592GeaBqgNBmTQdweFoCYz4DnK-DQHXeepwpxJ1a1frXYEapuIT-omoXak_olrag8I0K5t9R43kJwNCG_sC0E6T9cEXUujDfaisi6eVKfWaXHUeC8AWubQnYvwYechU_rruesu6kuLwttu5548fPkHr-2CVjflRf724xUl3_T0LRlIELMnqEmYDNMQ=/E38195E38184E3819FE381BEE382B9E383BCE3838FE3829AE383BCE382A2E383AAE383BCE3838A3.jpg?errorImage=false",
+          desc: "Địa điểm tổ chức concert và thể thao.",
+          hours: "10:00 - 22:00",
+          address: "4-7-2 Shintoshin, Saitama City",
+          map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.123456!2d139.642123!3d35.906123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f123456789ab%3A0xabcdef123456!2sSaitama%20Super%20Arena!5e0!3m2!1svi!2sjp!4v1690000000001!5m2!1svi!2sjp",
+        },
+
+        railway: {
+          title: "Bảo tàng Đường sắt",
+          img: "https://nippontravel.vn/wp-content/uploads/2024/09/the-railway-museum-1.webp",
+          desc: "Bảo tàng tương tác cho người yêu thích tàu.",
+          hours: "10:00 - 18:00",
+          address: "3-47 Omiya-ku, Saitama City, Saitama",
+          map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.234567!2d139.650123!3d35.905123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f23456789abc%3A0xabcdef123456!2sRailway%20Museum!5e0!3m2!1svi!2sjp!4v1690000000002!5m2!1svi!2sjp",
+        },
+
+        kawagoe: {
+          title: "Kawagoe (Phố Edo)",
+          img: "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqGx5cm8knTLo61O84kVTxOan841a30-aIJSoqkmlQNsP4-Qv0KVqX9M9vYFUiwJk7TYE8vzXfIuxUJL4oYthc8bKu1S3stjOUn4cWqXkk3JCXaE4-W9uPEB76D8ZD-3inzKZVocCvfQ7mIVyVReX7oW2kRxTihS2iJlsQhfqf4F12XOzCiVynvoy_ADiMycEGoAo7gfgly90xloa4SY_uuUD-tQ8hajT_xlo3nAkuYvh8/Alley_in_Kawagoe.jpg?errorImage=false",
+          desc: "Thành phố cổ với kiến trúc và món ăn truyền thống.",
+          hours: "9:00 - 18:00",
+          address: "Kawagoe, Saitama, Nhật Bản",
+          map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.345678!2d139.660123!3d35.904123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f3456789abc%3A0xabcdef123456!2sKawagoe!5e0!3m2!1svi!2sjp!4v1690000000003!5m2!1svi!2sjp",
+        },
+
+        hikawa: {
+          title: "Chùa Hikawa",
+          img: "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG3sHBC4eA4NCH3fg_Uel9vh122ucsGpRMMXHaqnPy2bQFjx4_NrVno76O4QcJfyPab17EfV-Dq8f9c7PnUo9ENIggfheT3VZvQQXUlSp7XonV96UwTqe_CxSMTftLk6O8RCKJVe8O19EsYOtgYrpZ9zNBc7WGFsQw-wcJoZmLyWZgAjlOtS9CM3nSbh7N-EYzA==/kita-in.jpg?errorImage=false",
+          desc: "Đền thờ lâu đời với lễ hội truyền thống.",
+          hours: "6:00 - 17:00",
+          address: "1-407 Miyacho, Omiya Ward, Saitama City, Saitama",
+          map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.456789!2d139.638123!3d35.908123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f3456789def%3A0xabcdef123456!2sHikawa%20Shrine!5e0!3m2!1svi!2sjp!4v1690000000004!5m2!1svi!2sjp",
+        },
+      };
+
+      // Vị trí xe bus theo phần trăm container
+      // 0% → trạm đầu, 100% → trạm cuối
+      const busPositions = ["0%", "25%", "50%", "75%", "100%"];
+
+      // Gắn sự kiện click cho từng trạm
+      placeItems.forEach((item, index) => {
+        item.addEventListener("click", () => {
+          // Khi click trạm → di chuyển xe bus tới vị trí tương ứng
+          bus.style.left = busPositions[index];
+          bus.style.transition =
+            "left 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55)"; // mượt hơn
+          // Lấy dữ liệu trạm từ placesData dựa trên dataset-id của item
+          const info = placesData[item.dataset.id];
+
+          // Tạo nội dung chi tiết hiển thị trong #place-detail
+          detail.innerHTML = `
+      <h2 style="color:#c62828;">${info.title}</h2>
+      <img src="${info.img}" alt="${info.title}">
+      <p>${info.desc}</p>
+      <p><strong>Giờ mở cửa:</strong> ${info.hours}</p>
+      <p><strong>Địa chỉ:</strong> ${info.address}</p>
+      <iframe
+        src="${info.map}"
+        width="100%"
+        height="250"
+        style="border:0; border-radius:8px;"
+        allowfullscreen=""
+        loading="lazy">
+      </iframe>`;
+
+          // Hiển thị khung chi tiết (ban đầu là display:none)
+          detail.style.display = "block";
+
+          // Cuộn trang mượt xuống khung chi tiết
+          detail.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+    </script>
+    <footer>
+      <div class="logo">© 2025 Khám phá Saitama — Trang demo</div>
+    </footer>
+  </body>
+</html>

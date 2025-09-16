@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f5f5;
+        color: #333;
+        line-height: 1.5;
+      }
+      header {
+        background-color: #c62828;
+        color: #fff;
+        padding: 16px 0;
+        text-align: center;
+      }
+      header h1 {
+        margin-bottom: 8px;
+      }
+      nav a {
+        color: #fff;
+        margin: 0 10px;
+        text-decoration: none;
+        transition: all 0.3s ease; /* Hiệu ứng mượt khi đổi trạng thái */
+      }
+      nav a:hover {
+        /*di chuyển chuột vào có gạch chân ở dưới*/
+        text-decoration: underline;
+        color: blue; /* Chữ chuyển sang màu đỏ */
+      }
+      .container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 0 10px;
+      }
+      h2 {
+        margin-bottom: 12px;
+      }
+      h2:hover,
+      h3:hover {
+        color: #ff4500; /* đổi màu khi hover */
+      }
+      ul:hover {
+        color: #ff4500;
+      }
+      h3 + ul {
+        background: #fff;
+        padding: 10px 16px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgb(165, 3, 3);
+      }
+      p {
+        margin-bottom: 12px;
+      }
+      ul {
+        margin-left: 20px;
+        margin-bottom: 12px;
+      }
+      footer {
+        text-align: center;
+        padding: 16px 0;
+        background: #c62828;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Khám phá Saitama</h1>
+      <div class="container top">
+        <nav>
+          <a href="index.html"><i class="fas fa-home"></i> Giới thiệu</a>
+          <a href="diemthamquan.html"
+            ><i class="fas fa-map-marker-alt"></i> Điểm tham quan</a
+          >
+          <a href="amthuc.html"><i class="fas fa-utensils"></i> Ẩm thực</a>
+          <a href="lichtrinh.html"><i class="fas fa-clock"></i> Lịch trình</a>
+          <a href="meo.html"><i class="fas fa-lightbulb"></i> Mẹo</a>
+          <a href="dichuyen.html"><i class="fas fa-train"></i> Di chuyển</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h2>Mẹo khi du lịch Saitama</h2>
+
+      <h3>🚉 Đi lại</h3>
+      <ul>
+        <li>Mua thẻ IC (Suica/PASMO) để đi tàu tiện lợi.</li>
+        <li>Sử dụng các loại 1-day pass (Seibu, Tobu) để tiết kiệm chi phí.</li>
+        <li>Tránh đi tàu vào giờ cao điểm (7h–9h sáng, 17h–19h tối).</li>
+        <li>Thuê xe đạp để khám phá thành phố nhỏ như Kawagoe.</li>
+      </ul>
+
+      <h3>🍜 Ẩm thực</h3>
+      <ul>
+        <li>Thử các món ăn địa phương như mì udon, bánh khoai lang Kawagoe.</li>
+        <li>Tham gia lễ hội và thưởng thức đồ ăn đường phố.</li>
+        <li>Mang theo tiền mặt vì nhiều quán nhỏ không nhận thẻ.</li>
+      </ul>
+
+      <h3>🛍️ Mua sắm</h3>
+      <ul>
+        <li>Ghé Mitsui Outlet Park Iruma để mua hàng hiệu giảm giá.</li>
+        <li>Mua bánh khoai lang (さつまいも菓子) làm quà lưu niệm.</li>
+        <li>ATM ở 7-Eleven và Lawson chấp nhận thẻ quốc tế.</li>
+      </ul>
+
+      <h3>🏯 Văn hóa & Lễ hội</h3>
+      <ul>
+        <li>Kiểm tra giờ mở cửa của các bảo tàng và đền chùa.</li>
+        <li>
+          Tuân thủ quy tắc khi vào đền (rửa tay, cúi chào, không chụp ảnh nếu bị
+          cấm).
+        </li>
+        <li>Tham gia Kawagoe Matsuri nếu đi vào mùa hè.</li>
+      </ul>
+
+      <h3>🎉 Trải nghiệm & Thiên nhiên</h3>
+      <ul>
+        <li>Tham quan khu phố cổ Kawagoe và chụp ảnh.</li>
+        <li>Trải nghiệm tắm onsen ở Chichibu.</li>
+        <li>Mang giày thoải mái nếu leo núi hoặc đi bộ nhiều.</li>
+        <li>Kiểm tra thời tiết, mang ô hoặc áo khoác nhẹ tùy mùa.</li>
+      </ul>
+
+      <h3>📶 Tiện ích</h3>
+      <ul>
+        <li>Thuê pocket Wi-Fi hoặc mua SIM 4G để dùng Google Maps.</li>
+        <li>Học vài câu tiếng Nhật cơ bản để giao tiếp.</li>
+        <li>
+          Nhật rất an toàn, nhưng nên giữ tư trang gọn gàng nơi đông người.
+        </li>
+      </ul>
+    </main>
+
+    <footer>
+      <div class="container">© 2025 Khám phá Saitama — Trang demo</div>
+    </footer>
+  </body>
+</html>

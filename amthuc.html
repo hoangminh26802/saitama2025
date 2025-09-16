@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+        line-height: 1.5;
+      }
+      header {
+        background-color: #c62828;
+        color: #fff;
+        padding: 16px 0;
+        text-align: center;
+      }
+      header h1 {
+        margin-bottom: 8px;
+      }
+      nav a {
+        color: #fff;
+        margin: 0 10px;
+        text-decoration: none;
+        transition: all 0.3s ease; /* Hiệu ứng mượt khi đổi trạng thái */
+      }
+      nav a:hover {
+        /*di chuyển chuột vào có gạch chân ở dưới*/
+        text-decoration: underline;
+        color: blue; /* Chữ chuyển sang màu đỏ */
+      }
+      .container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 0 10px;
+      }
+      h1,
+      h2,
+      h3 {
+        margin-bottom: 12px;
+      }
+      p {
+        margin-bottom: 12px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+        margin-top: 16px;
+      }
+      .card {
+        background: #fff;
+        padding: 16px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgb(165, 3, 3);
+      }
+      .card img {
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 12px;
+      }
+      footer {
+        text-align: center;
+        padding: 16px 0;
+        background: #c62828;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Khám phá Saitama</h1>
+      <div class="container top">
+        <nav>
+          <a href="index.html"><i class="fas fa-home"></i> Giới thiệu</a>
+          <a href="diemthamquan.html"
+            ><i class="fas fa-map-marker-alt"></i> Điểm tham quan</a
+          >
+          <a href="amthuc.html"><i class="fas fa-utensils"></i> Ẩm thực</a>
+          <a href="lichtrinh.html"><i class="fas fa-clock"></i> Lịch trình</a>
+          <a href="meo.html"><i class="fas fa-lightbulb"></i> Mẹo</a>
+          <a href="dichuyen.html"><i class="fas fa-train"></i> Di chuyển</a>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      <h2>Ẩm thực nổi bật ở Saitama</h2>
+      <div class="grid">
+        <div class="card">
+          <img
+            src="https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG8wcV0JssMCUDExXP3Bu0mOzWuKmggcQfQdPcUZuK8SbedIaUdToSlMZPhmURGQVr5zDE-ND409dd-U5kJBDHhEaW-DqSDz8C-YsOVg1wSE7Y3fOJtZaWnKnDRAvJizBNTcVOYhigL8CnS0TXJu_MwWTjh_Gvc9IgXqqKTT-6BGSRpXI8zagw7M7s6pqkyURoGiJfykGIuN86fcRUCepSQO54l9EL8gFvuIBfIOA5sQt5XBSdQGXxQy-YpR_vcQiped-ub5sfvZBAUyCiwFIZS8kYFQonwu0l4CAZ07b14BqbOvzn3mT5IZDJuWT0fMzAkYDhsymhj62HnvApxJttfM7imnc4wT2cFxahQGaEAe2/png?errorImage=false"
+            alt="Unagi (Lươn nướng)"
+          />
+          <h3>Unagi (Lươn nướng)</h3>
+          <p>Món ăn đặc sản ở Omiya và các nhà hàng truyền thống.</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG4Vb9_BKaRVUnHdzt29zFpmg0F_98LeU9ab6z3QrQmpdEIolV7w7X0Sxg62Biuln3PeIWZJ4nauXFgn2g8IaWZCO7yPGfsuwrbO-qR3qBjP8uCCiuFepMKHo4z5YZ1sJpi8l8LwQ8vUM6HDJ0on2s6f_Xs3Lm3QIShXt69073xn9wHaVJdO4EkWPi6P2jMh1fdHFumPDLaB5O5ZcwE4nDqaxaq3FecQZoKlzd9yGPDp2_AK-5mQ1OhO4Ekzsz43oon6x1u7PE3hFj1tQl9OenK0=/CandyAlley-1200x801.jpg?errorImage=false"
+            alt="Kawagoe Candy & Snacks"
+          />
+          <h3>Kawagoe Candy & Snacks</h3>
+          <p>Bánh kẹo truyền thống Edo, trải nghiệm tự làm kẹo.</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG4_2jb8X6VH2EvXNokEu30b_IXkq4BV0OIrr9dBe7ptk7eabnFeRPf4YPVeuNI4sbQy8HKd-nZJvvpy1tv--v0VuebO5AHBayQY0sFfr69IGWB1NaFvM6wO-BExtB8COHEc-2JCnxCdrhgBCQ4ZDEtyhfeEMJ4XD3ycQmLYLisz7cZHOr5Saaal8idN1MszASGm6G3T7wzdXvikpqbLcvJ9QpJ5ePV6qSAy1heGpsqrK8q2pGPhhocsDZd3boJitZA==/ramen_saitama_03.webp?errorImage=false"
+            alt="Soba và Udon địa phương"
+          />
+          <h3>Soba & Udon địa phương</h3>
+          <p>Mì truyền thống với nước dùng đặc trưng Saitama.</p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">© 2025 Khám phá Saitama — Trang demo</div>
+    </footer>
+  </body>
+</html>

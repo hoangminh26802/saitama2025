@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <meta name="desceription"
+    content="Trang giới thiệu Saitama: Điểm tham quan ẩm thực, lịch trình "/>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+    <style>
+       * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f5f5;
+        color: #333;
+        line-height: 1.5; /*Các dòng cách nhau*/
+      }
+      header {
+        background-color: #c62828;
+        color: #fff;
+        padding: 16px 0;
+        text-align: center;
+      }
+      header h1 {
+        margin-bottom: 8px;
+      }
+      nav a {
+        color: #fff;
+        margin: 0 10px;
+        text-decoration: none;
+        transition: all 0.3s ease; /* Hiệu ứng mượt khi đổi trạng thái */
+      }
+      nav a:hover {
+        /*di chuyển chuột vào có gạch chân ở dưới*/
+        text-decoration: underline;
+        color: blue; /* Chữ chuyển sang màu đỏ */
+      }
+      .container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 0 10px;
+      }
+      h1, h2 ,h3,h4{
+        margin-bottom: 12px;/* Cách đều phía dưới */
+         transition: color 0.3s ease; /* hiệu ứng mượt khi đổi màu */
+      }
+      
+      /*Khi rê chuột vào tiêu đề → chữ đổi màu mượt.*/
+      h1:hover, h2:hover, h3:hover {
+      color: #ff4500; /* đổi màu khi hover */
+      }
+      h1:hover{
+      color: blue; /* đổi màu khi hover */
+      }
+      p{
+        margin-bottom: 12px;
+      }
+
+      /*.grid chia khung lưới (grid layout).
+      .card tạo khung nổi riêng cho từng item.*/
+      .grid{
+        display: grid;/*→ Biến .grid thành grid container, các phần tử con bên trong sẽ trở thành grid items.*/
+        
+        /*repeat(): lặp lại số cột tự động.
+          auto-fit: tự động tạo càng nhiều cột càng tốt dựa trên khả năng chiều rộng container.
+          minmax(250px, 1fr): mỗi cột có chiều rộng tối thiểu 250px, tối đa 1 phần tỷ lệ (1fr).*/
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap:16px;/*Khoảng cách 16px giữa các cột và hàng.*/
+        margin-top: 16px;
+      }
+      .card{
+        background: #fff;
+        padding: 16px;
+        border-radius: 8px;
+         box-shadow: 0 2px 6px rgb(165, 3, 3);
+      }
+      .card img{
+        width:100%;
+        border-radius: 8px;
+        margin-bottom: 12px;
+      }
+      .split{
+        display: flex;
+        flex-wrap: wrap;
+        /*flex-wrap: wrap;
+        Cho phép các phần tử con xuống dòng khi không đủ chỗ trong một hàng.
+        Nếu không có wrap, các phần tử con sẽ cố gắng nằm trên cùng một hàng và có thể bị nén lại hoặc tràn ra ngoài.*/
+        gap:16px;
+        margin-top: 20px;
+      }
+
+      .split > div, .split aside {
+  background: #fff;
+  padding: 16px;
+   border-radius: 8px;
+         box-shadow: 0 2px 6px rgb(165, 3, 3);
+}
+      ul{
+        padding-left: 20px;
+        margin-bottom: 12px;
+      }
+      ol{
+        padding-left: 20px;
+        margin-bottom: 12px;
+      }
+      footer{
+        text-align: center;
+        padding: 16px 0;
+        background: #c62828;
+        margin-top: 20px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Khám phá Saitama</h1>
+      <div class="container top">
+        <nav>
+  <a href="index.html"><i class="fas fa-home"></i> Giới thiệu</a>
+  <a href="diemthamquan.html"><i class="fas fa-map-marker-alt"></i> Điểm tham quan</a>
+  <a href="amthuc.html"><i class="fas fa-utensils"></i> Ẩm thực</a>
+  <a href="lichtrinh.html"><i class="fas fa-clock"></i> Lịch trình</a>
+  <a href="meo.html"><i class="fas fa-lightbulb"></i> Mẹo</a>
+  <a href="dichuyen.html"><i class="fas fa-train"></i> Di chuyển</a>
+</nav>
+      </div>
+    </header>
+    <main class="">
+      <section class="hero">
+        <div>
+          <h2>Chào mừng đến Saitama</h2>
+          <p class="lead">
+            Saitama — tỉnh nằm gần Tokyo, nổi tiếng với lịch sử, vườn bonsai,
+            bảo tàng đường sắt và văn hoá địa phương thân thiện.
+          </p>
+          <div class="card" id="about">
+            <h2>Giớ thiệu ngắn</h2>
+            <p>
+              Saitama là tỉnh phía bắc Tokyo, vừa có thành phố hiện đại như
+              Saitama City, vừa có các khu vực truyền thống như Kawagoe với phố
+              cổ Edo. Nơi đây nổi bật với lịch sử lâu đời, văn hóa đậm đà và
+              thiên nhiên dễ chịu.
+            </p>
+            <p>
+              Lịch sử: Kawagoe từng là trung tâm thương mại thời Edo, nổi tiếng
+              với các kho gạch đỏ và chuông thành phố. Văn hóa: Nghệ thuật trồng
+              bonsai, festival địa phương, và các bảo tàng đường sắt.
+            </p>
+          </div>
+          <section id="attractions" class="grid-section">
+            <h2>Điểm quan quan nổi bật</h2>
+            <div class="grid">
+              <article class="place card">
+                <img
+                  src="https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqGziXdO2Bt-jmrlgVF7vAXVFyhUMtxuczMMgMBBQmeuto7yV3nmJBfBhzFU2X2oD3hnE_fk2UhIXzSgCHWGhfWBd3FpaHrtYGCcUmEYKA4nDVL81ZoW0p5r2Aw57YxsDGKNPybK2aPoA7dUBz88OxdJ3bjvomOEkj6xOLzEvF1vMV2kqi-Q-H7VnZlKsGSRPIWulL7MX7AArnYM6TzxHH1sZ0DrRV8yUy376tEU99FjQFv7I_a4Khq6vlPBwIkYMBiO2PpMXmzrGvP_TK-r_8DJgSlWyTpIXwoR4DlrQB3P_9lfLS_s6kr3xcRxGg57yGnnXuFV6iimVgVrS0EAWsRNoL0qvT1Ek8fowLE9gV6JDAfSekM2vLFsCC-TlyiTsVdcM-V8sc9P9U2lyU9mpcFiQ=/2020Omiya-Bonsai-Village12.jpg?errorImage=false"
+                  alt="Omiya Bonsai Village"
+                />
+                <h3>Omiya Bonsai Village</h3>
+                <p>
+                  Vườn bonsai truyền thống, viện bảo tàng bonsai, trải nghiệm
+                  nghệ thuật trồng cây cảnh.
+                </p>
+              </article>
+              <article class="place card">
+                <img
+                  src="https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqGzQAwGw0i5iw38y81IuV4ZHxyyaUqUyKlhkMOR-YUYuEU-vQy9TVG7aNQm4gmAS18iRYOvtjxnSDj_ZH_hqlYI36f7EFC4vxanqLQav2Q59cTKJsA1h7fc8lW7g-zaiVdS_KwaYVpoYYtcu-Bc1GpO1f3LJdqcGk76lsLRZNy3zq3NLMkDsgftxLWPt_YxV03clsmL8DKj5oLJxPxTYtJpSiQpq3gdKA7mwDlfypwQccUFvUuizQ7xrbhgE6Q0y_DJ-p6WmSGHcCfBcqiYlXV13SbzEHRKxzLhy6bj8t-HFopLGkiNM7q4h7w_zTcDleyg0w40o0665knyGDFbNH2HpnxD22cM2BqqXseAnRg4ThjkplMEk7ayRlgqRuov9ucSfZtXUJTBq89-znGPzxYR4jVKbd9-9jaYnLkJ4wrWtgtOINUQFg17O6rmrnpKvilic-n7TsXnS8mgTZmbpGvtOej17zr_ggdAIjfwIdU3pIuGcTm1qwK_l36qSiRWCfXdOAFGe6TNHW1fI4ey7UrtqEKVZoLYP2VpjnIorw0Dk3Zj-Q4DVFt_AaaKJD1e5XbHMv8T1tW0tEPP_kKUbvLg6-ukjne4D6UE-oW09ziE_MdlJF3MKGLwl1TD3JEoLQTm3AZQ6TTjbs0feQvtQuW9nkVCTs0BmUOq0C-GpDZeCB1JWbjlkLE1mRljbnJ8YhVw-o5zmnml_OR-bm6_whgO6wxOO_3a34qT4WQ74oIvf2d4RtcoeLtb0FQfRQtdtW8QH3vE14UZAreGfPGVxlc8iMU4Yw6HMcaBKRbA2u8L017-aVPhwSbvzIz9l9V8nti1hMVS746IrvyzcSo04AJHAKvJCa0xx6137drvGNKPFEdeUHdaoaS2xDm6SUbjUuzIQZ2erAsata-5CsUN0qF2m7BxX9uCHkx759uaCt-rtNp0HVLbez6xGEIVIIbPxk9RrL0Z-05Ks3E3AWNCbO-0lSQoGQKFQjZf-zDKFcW_TUSyEQWjClO_Fhkw-l_oYRfrwjq65pfzCl1gdTxktqZVo011i9QH1v9ArdtgJKbaDnR7sFCAOUwafgyRUF1I50z98tub1DHh949x87Is5Jf47dVgIPrMlu1tSyDXmMSYrzVnru1NzWsCjfRYhJA7z1sQkIKfDwAgk40FZ3t59rJh0ZZv2LR8e-xHxHHICn5Ldc_kR3Z4SwM7ULMa1scsYK3UzOd3fQbXj9fXkfwUnLJKS5BFjCg7Z9slsY4g7SMRd-XVtHqTItSDsi2UoHMI8vyM9Uq5YIiWOMhVm2De7x8Mx1MG6oVXNdsE4yFMRpm4t4xMWcfiQ8VvXkbCAMv8LMxnE3j3HU8BScikHH4ne-MFK95JzEW592GeaBqgNBmTQdweFoCYz4DnK-DQHXeepwpxJ1a1frXYEapuIT-omoXak_olrag8I0K5t9R43kJwNCG_sC0E6T9cEXUujDfaisi6eVKfWaXHUeC8AWubQnYvwYechU_rruesu6kuLwttu5548fPkHr-2CVjflRf724xUl3_T0LRlIELMnqEmYDNMQ=/E38195E38184E3819FE381BEE382B9E383BCE3838FE3829AE383BCE382A2E383AAE383BCE3838A3.jpg?errorImage=false"
+                  alt="Saitama Super Arena"
+                />
+                <h3>Saitama Super Arena</h3>
+                <p>
+                  Địa điểm tổ chức concert, sự kiện thể thao và hội nghị lớn.
+                </p>
+              </article>
+              <article class="place card">
+                <img
+                  src="https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG8Z4GVoUC5CrRCzQH-GIYDtzj3bborCej38iLqBhCiybi_3pdAB4G1l0cWm3LBbLajw__0LvS0Ywzc6E1LgEdzEwhYQijEzL77prHftsYEDk2a-i2LDrLtjVB_xPup-pW5v4IBPUA2esWYt20Q1QVS3r5Z412BxWQv3uU0eDq5Vbq3ExUHb4ZXZvzIMoNkhBCLHvaM7s6rSQQYZrR2idr4uTMDmmBN6JtywoekVokGyCLPho0wU43OBSWTwu-oSyUV4CXVVvS-L5cdEczAsLw4kVfHi3XWLQ50EAoUprhg_bgMz8Vh8LC7LyixbHEh9EE8wIoH1LrUIw79DgwEA6feV9Fn9HqynXn7pCLC5hM347B3XUie5-qA5FOsoVpT1MqJz8znBnCzZWA2TkrsGVGiPTAQVR5JByyAFOXlUGj1QdpwbR4gBaNx7ZNOGGIo4JWmYWrPZZuiI0ZiEyPB_4KEfrIlabpOV7HlNqikIgBHpFLrn9sTnkg-dz0l7mmrkjYLATpz_y9x7gQ2JsQ9M-Br31vEFv4XYwjhiWv3z4UlOZBh5RLRfqFl1RhDs7TVTKFrHCvyEIRiCpNJzN0SJoCpQEET8roTTlE3BmsRHAIS0qYh4xfGagBa-P08AMgUA0XGfcQy2ZfxXR7QxCJ0fROoNjJ-WIPz-Ow201XTlDSQs9mTG7MGJP3PVe7wSkJayF5u9lABBYhEUDr8jZ-7BMpMoj7k6pbhdu-cn5fPEL4kcece4g-naoSp-SppQyl4h4Sh7Oc-Ol9KG9nIUs-rwyJ9Y6mPXYwMNrvLXAXPUTcZV6-hFK_9c8FZvH7_eFPRvKJloGrMwlB9ye0hAPEAi_Bdw=/VC3A9BE1BAA3oTC3A0ngC490C6B0E1BB9DngSE1BAAFtE1BB9FSaitama.jpg?errorImage=false"
+                  alt="Bảo tàng đường sắt"
+                />
+                <h3>Bảo tàng Đường sắt Nhật Bản</h3>
+                <p>
+                  Bảo tàng tương tác dành cho người yêu thích tàu, giới thiệu
+                  lịch sử đường sắt Nhật Bản.
+                </p>
+              </article>
+              <article class="place card">
+                <img
+                  src="https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqGx5cm8knTLo61O84kVTxOan841a30-aIJSoqkmlQNsP4-Qv0KVqX9M9vYFUiwJk7TYE8vzXfIuxUJL4oYthc8bKu1S3stjOUn4cWqXkk3JCXaE4-W9uPEB76D8ZD-3inzKZVocCvfQ7mIVyVReX7oW2kRxTihS2iJlsQhfqf4F12XOzCiVynvoy_ADiMycEGoAo7gfgly90xloa4SY_uuUD-tQ8hajT_xlo3nAkuYvh8/Alley_in_Kawagoe.jpg?errorImage=false"
+                  alt="Kawagoe"
+                />
+                <h3>Kawagoe (Phố Edo)</h3>
+                <p>
+                  Thành phố cổ với kiến trúc và món ăn truyền thống ".
+                </p>
+              </article>
+              <article class="place card">
+                <img
+                  src="https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG3sHBC4eA4NCH3fg_Uel9vh122ucsGpRMMXHaqnPy2bQFjx4_NrVno76O4QcJfyPab17EfV-Dq8f9c7PnUo9ENIggfheT3VZvQQXUlSp7XonV96UwTqe_CxSMTftLk6O8RCKJVe8O19EsYOtgYrpZ9zNBc7WGFsQw-wcJoZmLyWZgAjlOtS9CM3nSbh7N-EYzA==/kita-in.jpg?errorImage=false"
+                  alt="Chùa Hikawa"
+                />
+                <h3>Chùa Hikawa</h3>
+                <p>
+                  Đền thờ lâu đời, nơi tổ chức lễ hội truyền thống nổi tiếng.
+                </p>
+              </article>
+            </div>
+          </section>
+          <section id="food" class="grid-section">
+            <h2>ẩm thực nổi bật</h2>
+            <div class="grid">
+              <article class="place card">
+                <img
+                  src="https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG8wcV0JssMCUDExXP3Bu0mOzWuKmggcQfQdPcUZuK8SbedIaUdToSlMZPhmURGQVr5zDE-ND409dd-U5kJBDHhEaW-DqSDz8C-YsOVg1wSE7Y3fOJtZaWnKnDRAvJizBNTcVOYhigL8CnS0TXJu_MwWTjh_Gvc9IgXqqKTT-6BGSRpXI8zagw7M7s6pqkyURoGiJfykGIuN86fcRUCepSQO54l9EL8gFvuIBfIOA5sQt5XBSdQGXxQy-YpR_vcQiped-ub5sfvZBAUyCiwFIZS8kYFQonwu0l4CAZ07b14BqbOvzn3mT5IZDJuWT0fMzAkYDhsymhj62HnvApxJttfM7imnc4wT2cFxahQGaEAe2/png?errorImage=false"
+                  alt="Unagi (Lươn nướng)"
+                />
+                <h3>Unagi (Lươn nướng)</h3>
+                <p>
+                  Món ăn đặc sản ở khu vực Omiya và các nhà hàng truyền thống.
+                </p>
+              </article>
+              <article class="place card">
+                <img
+                  src="https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG4Vb9_BKaRVUnHdzt29zFpmg0F_98LeU9ab6z3QrQmpdEIolV7w7X0Sxg62Biuln3PeIWZJ4nauXFgn2g8IaWZCO7yPGfsuwrbO-qR3qBjP8uCCiuFepMKHo4z5YZ1sJpi8l8LwQ8vUM6HDJ0on2s6f_Xs3Lm3QIShXt69073xn9wHaVJdO4EkWPi6P2jMh1fdHFumPDLaB5O5ZcwE4nDqaxaq3FecQZoKlzd9yGPDp2_AK-5mQ1OhO4Ekzsz43oon6x1u7PE3hFj1tQl9OenK0=/CandyAlley-1200x801.jpg?errorImage=false"
+                  alt="Kawagoe Candy & Snacks"
+                />
+                <h3>Kawagoe Candy & Snacks</h3>
+                <p>Bánh kẹo truyền thống Edo, trải nghiệm tự làm kẹo.</p>
+              </article>
+              <article class="place card">
+                <img
+                  src="https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG4_2jb8X6VH2EvXNokEu30b_IXkq4BV0OIrr9dBe7ptk7eabnFeRPf4YPVeuNI4sbQy8HKd-nZJvvpy1tv--v0VuebO5AHBayQY0sFfr69IGWB1NaFvM6wO-BExtB8COHEc-2JCnxCdrhgBCQ4ZDEtyhfeEMJ4XD3ycQmLYLisz7cZHOr5Saaal8idN1MszASGm6G3T7wzdXvikpqbLcvJ9QpJ5ePV6qSAy1heGpsqrK8q2pGPhhocsDZd3boJitZA==/ramen_saitama_03.webp?errorImage=false"
+                  alt="Soba và Udon địa phương"
+                />
+                <h3>Soba và Udon địa phương</h3>
+                <p>Mì truyền thống với nước dùng đặc trưng Saitama.</p>
+              </article>
+            </div>
+          </section>
+          <section class="split" id="itinerary">
+            <div>
+              <h2>Lịch trình gợi ý 1 ngày </h2>
+              <ol>
+        <li>
+          <strong>Sáng:</strong> Omiya Bonsai Village & Bảo tàng Bonsai
+          <br />
+          <a href="diemthamquan.html#omiya-bonsai"
+            >Xem chi tiết Omiya Bonsai Village</a
+          >
+        </li>
+        <li>
+          <strong>Trưa:</strong> Ăn Soba, Udon hoặc Unagi
+          <br />
+          <a href="diemthamquan.html#amthuc-saitama"
+            >Xem chi tiết ẩm thực Saitama</a
+          >
+        </li>
+        <li>
+          <strong>Chiều:</strong> Bảo tàng Đường sắt & Kawagoe
+          <br />
+          <a href="diemthamquan.html#bao-tang-duong-sat"
+            >Xem chi tiết Bảo tàng Đường sắt</a
+          >
+          <br />
+          <a href="diemthamquan.html#kawagoe">Xem chi tiết Kawagoe</a>
+        </li>
+        <li>
+          <strong>Tối:</strong> Saitama Super Arena hoặc dạo phố cổ
+          <br />
+          <a href="diemthamquan.html#super-arena"
+            >Xem chi tiết Saitama Super Arena</a
+          >
+        </li>
+      </ol>
+          <h2>Lịch trình 2 ngày</h2>
+              <ul>
+                <li>Ngày 1: Omiya + Bảo tàng đường sắt + ăn ở Saitama City</li>
+                <li>
+                  Ngày 2: Kawagoe + Chùa Hikawa + thưởng thức kẹo truyền thống
+                </li>
+              </ul>
+            </div>
+            <aside class="card" id="tips">
+              <h3>Mẹo Du lịch</h3>
+              <ul>
+                <li>Mua thẻ IC (Suica/PASMO) để đi tàu tiện lợi.</li>
+                <li>Kiểm tra giờ mở cửa của các bảo tàng và đền.</li>
+                <li>
+                  Thử đồ ăn địa phương và tham gia lễ hội nếu trùng thời gian.
+                </li>
+              </ul>
+
+              <h4>Di chuyển</h4>
+              <p>
+                Đi lại chủ yếu bằng đường sắt, từ Tokyo đến Omiya khoảng 30
+                phút, từ Omiya đi Kawagoe khoảng 30 phút.
+              </p>
+              <p>
+                Xe bus và thuê xe đạp cũng là lựa chọn tiện lợi ở các thành phố
+                nhỏ.
+              </p>
+            </aside>
+          </section>
+    </main>
+    <footer>
+      <div class="container">© 2025 Khám phá Saitama — Trang demo</div>
+    </footer>
+  </body>
+</html>
